@@ -1,17 +1,24 @@
 import React from 'react'
 
+import { FormBody, Label, InputEmail } from '../Styled'
+
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+
+const test = function (email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(String(email).toLowerCase())
+}
+
 const Form = () => {
   return (
     <div>
-      <form method='post' action=''>
-        <h1>Fill out this awesome form</h1>
+      <FormBody method='post' action=''>
+        <h1>Fill out this awesome FormBody</h1>
         <div>
           <h3>Your details</h3>
           <p>
-            <label class='label' for='email'>
-              Email
-            </label>
-            <input type='text' id='email' name='email' />
+            <Label>Email</Label>
+            <InputEmail test={test} type='text' id='email' name='email' />
           </p>
           <p>
             <label class='label' for='password'>
@@ -68,9 +75,9 @@ const Form = () => {
             <input type='submit' value='Create account' />
           </p>
         </div>
-      </form>
+      </FormBody>
     </div>
   )
 }
 
-export { Form }
+export default Form
