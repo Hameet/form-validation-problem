@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { StyledSelect } from '../style'
+import { StyledSelect, Label } from '../style'
 
 export default function Colors ({
   label,
@@ -19,7 +19,7 @@ export default function Colors ({
 
   return (
     <>
-      <label>{label}</label>
+      <Label>{label}</Label>
       <StyledSelect isValid={isValid} onChange={handleChange}>
         {colors.map(function (item, i) {
           return (

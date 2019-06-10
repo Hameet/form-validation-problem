@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { StyledInput } from '../style'
+import { StyledInput, Label } from '../style'
 
 export default function Input ({
   label,
@@ -19,7 +19,7 @@ export default function Input ({
 
   return (
     <>
-      <label>{label}</label>
+      <Label>{label}</Label>
       <StyledInput
         type={type}
         isValid={isValid}

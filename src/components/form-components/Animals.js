@@ -1,8 +1,13 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { StyledAnimalName } from '../style'
+import { StyledAnimalName, Label } from '../style'
 
-export default function Animals ({ initialValue, onValueChange, isValid }) {
+export default function Animals ({
+  initialValue,
+  onValueChange,
+  isValid,
+  label
+}) {
   const [animals, setAnimals] = useState(initialValue)
 
   const handleChange = e => {
@@ -17,7 +22,7 @@ export default function Animals ({ initialValue, onValueChange, isValid }) {
 
   return (
     <StyledAnimalName isValid={isValid}>
-      Animals
+      <Label>{label}</Label>
       {animals.map((animal, i) => (
         <label key={`${i}-${animal.name}`}>
           <input

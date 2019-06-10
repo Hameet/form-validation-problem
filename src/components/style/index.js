@@ -2,15 +2,22 @@ import styled from 'styled-components'
 
 const StyledInput = styled.input`
   display: block;
-  border-color: ${props => (props.isValid ? 'green' : 'red')};
-  border-width: 5px;
+  border-color: ${props => (props.isValid ? ' #555' : 'red')};
+
+  // border: solid 2px;
+  padding: 0.5em 0.5em;
+  // color: #555;
+  width: 16em;
 `
 
 const StyledSelect = styled.select`
   color: ${function (props) {
-    // console.log(props, "props");
     return props.isValid ? 'black' : 'red'
   }};
+  font-size: 1em;
+  border-radius: 0.25em;
+  -webkit-appearance: none;
+  width: 17em;
 `
 
 const StyledOption = styled.option`
@@ -31,18 +38,27 @@ const StyledAnimalName = styled.p`
 const Body = styled.body`
   font-family: sans-serif;
   line-height: 1.5;
-  color: #333;
+  // color: #333;
   background: #ddd;
-  margin: 2em;
+
+  overflow: hidden;
+
+  padding: 0;
+  height: 100vh;
+  overflow-y: none;
 `
 const StyledForm = styled.form`
   background: #fff;
   padding: 1em 1.25em;
   border: solid 1px #ccc;
   border-radius: 0.25em;
+  margin: 2em;
 `
 const Label = styled.label`
   vertical-align: middle;
+  width: 10em;
+  display: inline-block;
+  font-weight: bold;
 `
 const Button = styled.button`
   margin-top: 5em;
@@ -65,6 +81,10 @@ const Button = styled.button`
 const Styledh1 = styled.h1`
   color: #576774;
 `
+const Styledhr = styled.hr`
+  margin: 20px 0;
+  border: 1px solid;
+`
 
 export {
   Body,
@@ -76,5 +96,6 @@ export {
   StyledError,
   StyledSelect,
   StyledOption,
-  StyledAnimalName
+  StyledAnimalName,
+  Styledhr
 }
