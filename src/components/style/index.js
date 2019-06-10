@@ -35,7 +35,7 @@ const Body = styled.body`
   background: #ddd;
   margin: 2em;
 `
-const Form = styled.form`
+const StyledForm = styled.form`
   background: #fff;
   padding: 1em 1.25em;
   border: solid 1px #ccc;
@@ -44,11 +44,34 @@ const Form = styled.form`
 const Label = styled.label`
   vertical-align: middle;
 `
+const Button = styled.button`
+  margin-top: 5em;
+  outline: none;
+  border-color: #0b77db;
+  box-shadow: 0 0 6px rgba(48, 140, 255, 0.25);
+  border: solid 1px transparent;
+  background: #0b77db;
+  color: #fff;
+  font-size: 0.875em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  :hover {
+    background: #3c9aa7;
+  }
+  :focus {
+    background: #3d6eac;
+  }
+`
+const Styledh1 = styled.h1`
+  color: #576774;
+`
 
 export {
   Body,
-  Form,
+  StyledForm,
+  Styledh1,
   Label,
+  Button,
   StyledInput,
   StyledError,
   StyledSelect,

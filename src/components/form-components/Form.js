@@ -12,7 +12,7 @@ import {
 import Input from './Input'
 import Animals from './Animals'
 import Colors from './Colors'
-import { StyledError } from '../style'
+import { StyledError, Button, StyledForm, Body, Styledh1 } from '../style'
 
 import { initialState } from './State'
 
@@ -66,52 +66,55 @@ export default function Form () {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Input
-          type='text'
-          label='Email'
-          isValid={isEmailValid}
-          initialValue={emailValue}
-          onValueChange={handleValueChange('email')}
-        />
-        {!isEmailValid && <StyledError>Your email is not valid.</StyledError>}
-        <Input
-          type='password'
-          label='Password'
-          isValid={isPasswordValid}
-          initialValue={passwordValue}
-          onValueChange={handleValueChange('password')}
-        />
-        {!isPasswordValid && (
-          <StyledError>Your password is not valid.</StyledError>
-        )}
-        <Colors
-          type='colors'
-          label='Colors'
-          colors={initialState.colors.value}
-          isValid={isColorValid}
-          initialValue={colorValue}
-          onValueChange={handleValueChange('colors')}
-        />
-        {!isColorValid && <StyledError>Please select a color.</StyledError>}
-        <Animals
-          initialValue={animalsValue}
-          isValid={isAnimalValid}
-          onValueChange={handleValueChange('animals')}
-        />
-        {!isAnimalValid && <StyledError>Select 2 animals.</StyledError>}
-        <Input
-          type='text'
-          label='TigerName'
-          isValid={isTigerValid}
-          initialValue={tigerValue}
-          onValueChange={handleValueChange('tigerName')}
-        />
-        {!isTigerValid && (
-          <StyledError>Please enter name of tiger.</StyledError>
-        )}
-        <button type='submit'>Submit</button>
-      </form>
+      <Body>
+        <StyledForm onSubmit={handleSubmit}>
+          <Styledh1>Fill out this awesome form</Styledh1>
+          <Input
+            type='text'
+            label='Email'
+            isValid={isEmailValid}
+            initialValue={emailValue}
+            onValueChange={handleValueChange('email')}
+          />
+          {!isEmailValid && <StyledError>Your email is not valid.</StyledError>}
+          <Input
+            type='password'
+            label='Password'
+            isValid={isPasswordValid}
+            initialValue={passwordValue}
+            onValueChange={handleValueChange('password')}
+          />
+          {!isPasswordValid && (
+            <StyledError>Your password is not valid.</StyledError>
+          )}
+          <Colors
+            type='colors'
+            label='Colors'
+            colors={initialState.colors.value}
+            isValid={isColorValid}
+            initialValue={colorValue}
+            onValueChange={handleValueChange('colors')}
+          />
+          {!isColorValid && <StyledError>Please select a color.</StyledError>}
+          <Animals
+            initialValue={animalsValue}
+            isValid={isAnimalValid}
+            onValueChange={handleValueChange('animals')}
+          />
+          {!isAnimalValid && <StyledError>Select 2 animals.</StyledError>}
+          <Input
+            type='text'
+            label='TigerName'
+            isValid={isTigerValid}
+            initialValue={tigerValue}
+            onValueChange={handleValueChange('tigerName')}
+          />
+          {!isTigerValid && (
+            <StyledError>Please enter name of tiger.</StyledError>
+          )}
+          <Button type='submit'>Create Account</Button>
+        </StyledForm>
+      </Body>
     </>
   )
 }

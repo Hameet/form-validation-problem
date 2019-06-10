@@ -7,10 +7,10 @@ import SEO from '../components/seo'
 import Form from '../components/form-components/Form'
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <Form />
     <Link to='/page-2/'>Go to page 2</Link>
-  </Layout>
+  </>
 )
 
 export default IndexPage
