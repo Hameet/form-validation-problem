@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
+import { Link } from 'gatsby'
 
 import {
   validateEmail,
@@ -24,8 +25,12 @@ export default function Form () {
     password: { value: passwordValue, valid: isPasswordValid },
     colors: { value: colorValue, valid: isColorValid },
     animals: { value: animalsValue, valid: isAnimalValid },
-    tigerName: { value: tigerValue, valid: isTigerValid }
+    tigerName: { value: tigerValue, valid: isTigerValid },
+    Formvalid: { valid: isFormValid }
   } = formValues
+
+  const isThisFormValid = formValues =>
+    Object.values(formValues).filter(x => x.valid === true)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -50,6 +55,10 @@ export default function Form () {
       tigerName: {
         ...formValues.tigerName,
         valid: validateTiger(animalsValue, tigerValue)
+      },
+      Formvalid: {
+        ...formValues,
+        valid: isThisFormValid(formValues)
       }
     })
   }
@@ -64,10 +73,14 @@ export default function Form () {
     })
   }
 
+  console.log('log', isFormValid.length)
   return (
     <>
-      {/* <Body> */}
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm
+        method='post'
+        action={<Link to='/page-2/'>Go to page 2</Link>}
+        onSubmit={handleSubmit}
+      >
         <Styledh1>Fill out this awesome form</Styledh1>
         <Input
           type='text'
@@ -115,8 +128,10 @@ export default function Form () {
           <StyledError>Please enter name of tiger.</StyledError>
         )}
         <Button type='submit'>Create Account</Button>
+        {isFormValid.length === 5 && (
+          <p>Yay! Form submitted with correct values</p>
+        )}
       </StyledForm>
-      {/* </Body> */}
     </>
   )
 }
