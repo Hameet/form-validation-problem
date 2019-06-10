@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { StyledSelect } from '../../style'
+import { StyledSelect } from '../style'
 
-export default function Select ({
+export default function Colors ({
   label,
   initialValue,
   isValid,

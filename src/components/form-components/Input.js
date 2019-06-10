@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { StyledInput } from '../../style'
+import { StyledInput } from '../style'
 
 export default function Input ({
   label,

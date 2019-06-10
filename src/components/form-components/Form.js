@@ -1,8 +1,5 @@
 import * as React from 'react'
 import { useState } from 'react'
-import ReactDOM from 'react-dom'
-
-import './styles.css'
 
 import {
   validateEmail,
@@ -10,44 +7,16 @@ import {
   validateColor,
   validateAnimals,
   validateTiger
-} from './utilities'
-import Input from './components/Input'
-import Animals from './components/Input/animals'
-import Select from './components/Input/select'
-import { StyledError } from './style'
+} from '../../utilities'
 
-const initialState = {
-  email: {
-    value: '',
-    valid: true
-  },
-  password: {
-    value: '',
-    valid: true
-  },
-  colors: {
-    value: ['Select Color', 'Violet', 'Red', 'Yellow', 'Black'],
-    valid: true
-  },
-  animals: {
-    value: [
-      {
-        name: 'Bear',
-        checked: false
-      },
-      { name: 'Sam', checked: false },
-      { name: 'Snake', checked: false },
-      { name: 'Tiger', checked: false }
-    ],
-    valid: true
-  },
-  tigerName: {
-    value: '',
-    valid: true
-  }
-}
+import Input from './Input'
+import Animals from './Animals'
+import Colors from './Colors'
+import { StyledError } from '../style'
 
-export default function App () {
+import { initialState } from './State'
+
+export default function Form () {
   const [formValues, setFormValues] = useState(initialState)
 
   const {
@@ -94,7 +63,7 @@ export default function App () {
       }
     })
   }
-  // console.log("tigername", formValues.tigerName);
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -105,6 +74,7 @@ export default function App () {
           initialValue={emailValue}
           onValueChange={handleValueChange('email')}
         />
+        {!isEmailValid && <StyledError>Your email is not valid.</StyledError>}
         <Input
           type='password'
           label='Password'
@@ -112,7 +82,10 @@ export default function App () {
           initialValue={passwordValue}
           onValueChange={handleValueChange('password')}
         />
-        <Select
+        {!isPasswordValid && (
+          <StyledError>Your password is not valid.</StyledError>
+        )}
+        <Colors
           type='colors'
           label='Colors'
           colors={initialState.colors.value}
@@ -120,11 +93,13 @@ export default function App () {
           initialValue={colorValue}
           onValueChange={handleValueChange('colors')}
         />
+        {!isColorValid && <StyledError>Please select a color.</StyledError>}
         <Animals
           initialValue={animalsValue}
           isValid={isAnimalValid}
           onValueChange={handleValueChange('animals')}
         />
+        {!isAnimalValid && <StyledError>Select 2 animals.</StyledError>}
         <Input
           type='text'
           label='TigerName'
@@ -132,18 +107,11 @@ export default function App () {
           initialValue={tigerValue}
           onValueChange={handleValueChange('tigerName')}
         />
+        {!isTigerValid && (
+          <StyledError>Please enter name of tiger.</StyledError>
+        )}
         <button type='submit'>Submit</button>
       </form>
-      {!isEmailValid && <StyledError>Your email is not valid.</StyledError>}
-      {!isPasswordValid && (
-        <StyledError>Your password is not valid.</StyledError>
-      )}
-      {!isColorValid && <StyledError>Please enter a color.</StyledError>}
-      {!isAnimalValid && <StyledError>Select 2 animals.</StyledError>}
-      {!isTigerValid && <StyledError>Please enter name of tiger.</StyledError>}
     </>
   )
 }
-
-const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)

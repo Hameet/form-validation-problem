@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { StyledAnimalName } from '../../style'
+import { StyledAnimalName } from '../style'
 
 export default function Animals ({ initialValue, onValueChange, isValid }) {
   const [animals, setAnimals] = useState(initialValue)
