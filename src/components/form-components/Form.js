@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 
 import {
@@ -7,7 +7,8 @@ import {
   validatePassword,
   validateColor,
   validateAnimals,
-  validateTiger
+  validateTiger,
+  checkValid
 } from '../../utilities'
 
 import Input from './Input'
@@ -19,14 +20,14 @@ import { initialState } from './State'
 
 export default function Form () {
   const [formValues, setFormValues] = useState(initialState)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const {
     email: { value: emailValue, valid: isEmailValid },
     password: { value: passwordValue, valid: isPasswordValid },
     colors: { value: colorValue, valid: isColorValid },
     animals: { value: animalsValue, valid: isAnimalValid },
-    tigerName: { value: tigerValue, valid: isTigerValid },
-    Formvalid: { valid: isFormValid }
+    tigerName: { value: tigerValue, valid: isTigerValid }
   } = formValues
 
   const isThisFormValid = formValues =>
@@ -61,6 +62,7 @@ export default function Form () {
         valid: isThisFormValid(formValues)
       }
     })
+    setIsSubmitting(true)
   }
 
   const handleValueChange = input => value => {
@@ -73,7 +75,12 @@ export default function Form () {
     })
   }
 
-  console.log('log', isFormValid.length)
+  useEffect(() => {
+    return checkValid(formValues) && isSubmitting
+      ? alert('Yay Form submitted')
+      : undefined
+  })
+
   return (
     <>
       <StyledForm
@@ -127,10 +134,9 @@ export default function Form () {
         {!isTigerValid && (
           <StyledError>Please enter name of tiger.</StyledError>
         )}
-        <Button type='submit'>Create Account</Button>
-        {isFormValid.length === 5 && (
-          <p>Yay! Form submitted with correct values</p>
-        )}
+        <Button onClick={() => useEffect} type='submit'>
+          Create Account
+        </Button>
       </StyledForm>
     </>
   )

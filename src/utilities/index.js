@@ -27,3 +27,8 @@ export function validateTiger (animals, tigerValue) {
   console.log('tiger', !(Tiger[0].checked && tigerValue === ''))
   return !(Tiger[0].checked && tigerValue === '')
 }
+
+export const checkValid = formValues => {
+  const updated = Object.values(formValues)
+  return updated.filter(x => x.valid === true).length > 4
+}
