@@ -28,14 +28,9 @@ If the form is submitted and an error occurs, the error element's parent should 
 To solve this problem I used the latest React tools such as Hooks and for the CSS I used styled-components. You can see my solution # <a href="https://form-validation-react.netlify.com/">here</a>
 ## The cherry on the cake
 
-Beyond the problem statement, show us the consideration you have given to some or all of the following:
+Going beyond the problem statement I've added Gatsby and published this problem on Netlify to provide an easy access for anyone who wants to look at it.
 
-- Documentation
-- Accessibility
-- Progressive enhancement
-- Browser support
-- Testing
-- Tooling
+I've tested it on Google Chrome and Mozilla and it seems to work fine. 
 
 ## Submission
 
