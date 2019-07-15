@@ -26,8 +26,5 @@ export const initialState = {
   tigerName: {
     value: '',
     valid: true
-  },
-  Formvalid: {
-    valid: true
   }
 }

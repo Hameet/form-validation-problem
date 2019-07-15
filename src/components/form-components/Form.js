@@ -19,6 +19,7 @@ import { StyledError, Button, StyledForm, Styledhr, Styledh1 } from '../style'
 import { initialState } from './State'
 
 export default function Form () {
+  // Here we define the values and assign them to the UseState hook
   const [formValues, setFormValues] = useState(initialState)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -30,8 +31,9 @@ export default function Form () {
     tigerName: { value: tigerValue, valid: isTigerValid }
   } = formValues
 
-  const isThisFormValid = formValues =>
-    Object.values(formValues).filter(x => x.valid === true)
+  // This function takes all the inputs for the values defined above
+  // and assigns them to the hook and runs the validation function on each value
+  // This fn is called when the form submits
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -56,10 +58,6 @@ export default function Form () {
       tigerName: {
         ...formValues.tigerName,
         valid: validateTiger(animalsValue, tigerValue)
-      },
-      Formvalid: {
-        ...formValues,
-        valid: isThisFormValid(formValues)
       }
     }
     setFormValues(updatedFormValues)
@@ -68,6 +66,8 @@ export default function Form () {
     setIsSubmitting(checkValid(updatedFormValues))
   }
 
+  // This is the second handle function which is assigned to each component of the form
+  // It handles the individual inputs of the components and is called during each individual comp submition
   const handleValueChange = input => value => {
     return setFormValues({
       ...formValues,
