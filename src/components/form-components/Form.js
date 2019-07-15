@@ -35,7 +35,7 @@ export default function Form () {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setFormValues({
+    const updatedFormValues = {
       ...formValues,
       email: {
         ...formValues.email,
@@ -61,8 +61,11 @@ export default function Form () {
         ...formValues,
         valid: isThisFormValid(formValues)
       }
-    })
-    setIsSubmitting(true)
+    }
+    setFormValues(updatedFormValues)
+    // set isSubmitting based on whether the entire form is valid
+    // could change this state to isFormValid...
+    setIsSubmitting(checkValid(updatedFormValues))
   }
 
   const handleValueChange = input => value => {
@@ -75,11 +78,18 @@ export default function Form () {
     })
   }
 
-  useEffect(() => {
-    return checkValid(formValues) && isSubmitting
-      ? alert('Yay Form submitted')
-      : undefined
-  })
+  useEffect(
+    () => {
+      isSubmitting && alert('YAY! You have entered a valid form')
+      // after running the effect set isSubmitting to false so the alert
+      // doesn't run until we click submit again
+      setIsSubmitting(false)
+      // you can pass a second argument to useEffect
+      // this is an array of values that determine when the effect should run
+      // only when these values change
+    },
+    [isSubmitting]
+  )
 
   return (
     <>
@@ -105,7 +115,9 @@ export default function Form () {
           onValueChange={handleValueChange('password')}
         />
         {!isPasswordValid && (
-          <StyledError>Your password is not valid.</StyledError>
+          <StyledError>
+            Your password must be at least 8 characters.
+          </StyledError>
         )}
         <Styledhr />
         <Colors

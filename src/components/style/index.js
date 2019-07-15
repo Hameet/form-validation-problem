@@ -35,7 +35,7 @@ const StyledAnimalName = styled.p`
   }};
 `
 
-const Body = styled.body`
+const Body = styled.div`
   font-family: sans-serif;
   line-height: 1.5;
   // color: #333;
